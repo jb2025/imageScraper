@@ -12,11 +12,10 @@ var request = require('request'),
 request('https://imgur.com/r/soccer', function(err, resp, body){
 	if(!err && resp.statusCode == 200){
 		var $ = cheerio.load(body);
-		
 		//a.title refers to the a href class, using the nomenclature a.id
 		//#imagelist below refers to the div id, allowing you to search within a specific area
 		$('a.image-list-link', '#imagelist').each(function() {
-			var url = this.attr('href');
+			var url = $.attr('href');
 			urls.push(url);
 		});
 		console.log(urls);
